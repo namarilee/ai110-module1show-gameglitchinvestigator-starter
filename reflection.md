@@ -5,9 +5,10 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+When I first ran it, it actually displayed an error regarding an architecture mismatch for numpy. I used AI to help resolve it by reinstalling numpy. After it was resolved, I was able to enter a guess on the game.
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
-
+The hints were reserved; it would say "Go higher" although it should say "Go lower." Also, the attempts aren't counted correctly, it said "Out of attempts" when I still had one attempt left. When I clicked "New Game", it wouldn't let me submit any more guesses; it seems stuck on the "game over" state.
 ---
 
 ## 2. How did you use AI as a teammate?
