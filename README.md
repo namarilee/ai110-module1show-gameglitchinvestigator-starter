@@ -25,13 +25,24 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+   - The game challenges the player to guess a secret number within a limited number of attempts, with hints and scoring feedback after each guess.
+- [x] Detail which bugs you found.
+   - Hints were reversed ("Go HIGHER" appeared when the guess was too high).
+   - Attempts were off by one, causing "Out of attempts" too early.
+   - The game could remain stuck in a non-playing/game-over state after starting a new game.
+- [x] Explain what fixes you applied.
+   - Corrected `check_guess` hint direction so too-high guesses return "Go LOWER" and too-low guesses return "Go HIGHER".
+   - Fixed attempt counting by initializing `st.session_state.attempts` to `0`.
+   - Refactored game logic into `logic_utils.py` and updated `app.py` to import shared logic functions.
+   - Added/updated pytest coverage and verified behavior with a full test run (`28 passed`).
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [x] Fixed winning game screenshot
+
+![Fixed winning game screenshot](assets/fixed-game-win.png)
+
 
 ## 🚀 Stretch Features
 
