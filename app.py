@@ -33,19 +33,20 @@ def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
+    #FIXME: logic breaks here
     try:
         if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
+            return "Too High", "📉 Go LOWER!"
         else:
-            return "Too Low", "📉 Go LOWER!"
+            return "Too Low", "📈 Go HIGHER!"
     except TypeError:
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
         if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
-
+            return "Too High", "📉 Go LOWER!"
+        return "Too Low", "📈 Go HIGHER!"
+#FIX: swapped hints
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
@@ -93,7 +94,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0 #FIX: initial attempts value
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -136,7 +137,7 @@ if new_game:
     st.session_state.secret = random.randint(1, 100)
     st.success("New game started.")
     st.rerun()
-
+ #FIXME: stuck in "game over" state
 if st.session_state.status != "playing":
     if st.session_state.status == "won":
         st.success("You already won. Start a new game to play again.")
@@ -170,7 +171,7 @@ if submit:
             outcome=outcome,
             attempt_number=st.session_state.attempts,
         )
-
+#FIXME: out-of-attempts logic wrong
         if outcome == "Win":
             st.balloons()
             st.session_state.status = "won"
